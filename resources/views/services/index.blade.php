@@ -44,13 +44,28 @@
                             <td>{{$service->name}}</td>
                             <td>{{$service->description}}</td>
                             <td>
-                                <a href="services/destroy/"class="btn btn-primary btn-sm"><i class="fas fa-user"></i></a>
+                                <div class="form-button-action">
+                                    <a href="{{route('services.show',$company)}}" data-bs-toggle="tooltip" title="" class="btn btn-link btn-secondary btn-lg" data-original-title="Edit Task">
+                                        <i class="fa fa-user"></i>
+                                    </a>
+                                    <a href="{{route('companies.edit',$company)}}" data-bs-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <form method="POST" action="{{route('services.destroy',$company)}}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="button" data-bs-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                                <!--<a href="services/destroy/"class="btn btn-primary btn-sm"><i class="fas fa-user"></i></a>
                                 <a href="{{route('services.edit',$service)}}" class="btn btn-secondary btn-sm"><i class="fas fa-edit"></i></a>
                                 <form method="POST" action="{{route('services.destroy',$service)}}">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                                </form>
+                                </form>-->
                             </td>
                         </tr>
                         @endforeach

@@ -56,13 +56,28 @@
                             <td>{{$salarie->date_debut}}</td>
                             <td>{{$salarie->salaire}}</td>
                             <td>
-                                <a href="salaries/destroy/"class="btn btn-primary btn-sm"><i class="fas fa-user"></i></a>
+                                <div class="form-button-action">
+                                    <a href="{{route('companies.show',$company)}}" data-bs-toggle="tooltip" title="" class="btn btn-link btn-secondary btn-lg" data-original-title="Edit Task">
+                                        <i class="fa fa-user"></i>
+                                    </a>
+                                    <a href="salaries/{{$salarie->id}}/edit" data-bs-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <form method="POST" action="/salaries/{{$salarie->id}}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="button" data-bs-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                                <!--<a href="salaries/destroy/"class="btn btn-primary btn-sm"><i class="fas fa-user"></i></a>
                                 <a href="salaries/{{$salarie->id}}/edit" class="btn btn-secondary btn-sm"><i class="fas fa-edit"></i></a>
                                 <form method="POST" action="/salaries/{{$salarie->id}}">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                                </form>
+                                </form>-->
                             </td>
                         </tr>
                         @endforeach
