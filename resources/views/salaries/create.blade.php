@@ -62,6 +62,21 @@
                     </div>
                 </div>
                 <div class="row form-group">
+                    <div class="col col-md-3"><label for="services_id" class=" form-control-label">Services</label></div>
+                    <div class="col-12 col-md-6">
+                        <select id="services_id" name="services_id" class="form-select">
+                            <option value="">choose one</option>
+                            @foreach ($services as $service)
+                            <option @selected(old('services_id')===$service->id) value="{{$service->id}}">{{$service->name}}</option>
+                                
+                            @endforeach
+                        </select>
+                        @error('services_id')
+                        <small class="form-text text-muted">{{$message}}</small>
+                        @enderror
+                    </div>
+                </div>
+                <div class="row form-group">
                     <div class="col col-md-3"><label for="salaire" class=" form-control-label">Salary</label></div>
                     <div class="col-12 col-md-6">
                         <input type="text" value="{{old('salaire')}}" id="text-input" name="salaire" placeholder="Salary" class="form-control">

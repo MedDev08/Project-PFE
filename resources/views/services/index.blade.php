@@ -45,16 +45,16 @@
                             <td>{{$service->description}}</td>
                             <td>
                                 <div class="form-button-action">
-                                    <a href="{{route('services.show',$company)}}" data-bs-toggle="tooltip" title="" class="btn btn-link btn-secondary btn-lg" data-original-title="Edit Task">
+                                    <a href="" data-bs-toggle="tooltip" title="" class="btn btn-link btn-secondary btn-lg" data-original-title="Edit Task">
                                         <i class="fa fa-user"></i>
                                     </a>
-                                    <a href="{{route('companies.edit',$company)}}" data-bs-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
+                                    <a href="{{route('services.edit',$service)}}" data-bs-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
                                         <i class="fa fa-edit"></i>
                                     </a>
-                                    <form method="POST" action="{{route('services.destroy',$company)}}">
+                                    <form method="POST" action="{{route('services.destroy',$service)}}">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="button" data-bs-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove">
+                                        <button type="submit" data-bs-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove">
                                             <i class="fa fa-trash"></i>
                                         </button>
                                     </form>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Salarie;
+use App\Models\Services;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -15,9 +16,10 @@ class SalarieController extends Controller
      */
     public function index()
     {
-        //
+        $salaries=Salarie::query()->with('service')->get();
         return view('salaries.index',[
-            'salaries'=>Salarie::all()
+            'salaries'=>$salaries,
+            'services'=>Services::all()
         ]);
     }
 
@@ -28,8 +30,11 @@ class SalarieController extends Controller
      */
     public function create()
     {
-        //
-        return view('salaries.create');
+        $salarie =new Salarie();
+        return view('salaries.create',[
+            'salarie'=>$salarie,
+            'services'=>Services::all()
+        ]);
     }
 
     /**
@@ -46,6 +51,7 @@ class SalarieController extends Controller
             'nom'=>'required',
             'prenom'=>'required',
             'tel'=>'required',
+            'services_id'=>['required','numeric'],
             'salaire'=>['required','numeric']
         ]);
         
@@ -53,7 +59,7 @@ class SalarieController extends Controller
             $formFields['img']=$request->file('img')->store('images','public');
         }
         Salarie::create($formFields);
-        return redirect('/')->with('message','Employee created successfully!');
+        return redirect('/salaries')->with('message','Employee created successfully!');
     }
 
     /**
@@ -76,8 +82,12 @@ class SalarieController extends Controller
      */
     public function edit(Salarie $salarie)
     {
-        //
-        return view('salaries.edit',['salarie'=>$salarie]);
+        //dd($salarie->service()->get());
+        
+        return view('salaries.edit',[
+            'salarie'=>$salarie,
+            'services'=>Services::all()
+        ]);
     }
 
     /**
@@ -94,14 +104,14 @@ class SalarieController extends Controller
             'nom'=>'required',
             'prenom'=>'required',
             'tel'=>'required',
-            'salaire'=>['required','numeric']
+            'salaire'=>['required','numeric'],
+            'services_id'=>['required','numeric']
         ]);
-        
         if($request->hasFile('img')){
             $formFields['img']=$request->file('img')->store('images','public');
         }
         $salarie->update($formFields);
-        return redirect('/')->with('message','Employee updated successfully!');
+        return redirect('/salaries')->with('message','Employee updated successfully!');
         
     }
 
@@ -114,6 +124,6 @@ class SalarieController extends Controller
     public function destroy(Salarie $salarie)
     {
         $salarie->delete();
-        return redirect('/')->with('message','Employee delete successfully!');
+        return redirect('/salaries')->with('message','Employee delete successfully!');
     }
 }

@@ -60,7 +60,7 @@
                                     <form method="POST" action="{{route('companies.destroy',$company)}}">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="button" data-bs-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove">
+                                        <button type="submit" data-bs-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove">
                                             <i class="fa fa-trash"></i>
                                         </button>
                                     </form>

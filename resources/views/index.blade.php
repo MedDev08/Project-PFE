@@ -4,7 +4,6 @@
     <h1 class="mt-4">Dashboard</h1>
     <h3 class="breadcrumb justify-content-center align-items-center mb-5">
     </h3>
-    <x-flash-message/>
     <div class="card mb-4">
         <div class="card-header">
             <div class="d-flex align-items-center justify-content-center">
