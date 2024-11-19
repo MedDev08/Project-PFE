@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\SalarieController;
 use App\Http\Controllers\ServicesController;
@@ -15,6 +16,9 @@ use App\Http\Controllers\ServicesController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Ajax
+Route::get('/salaries/{service_id}', [SalarieController::class, 'getSalariesByService'])->name('salaries.byService');
+
 Route::get('/', function () { return view('index'); });
 /*
 |------------------------------------------------------------------------
@@ -56,5 +60,13 @@ Route::resource('services',ServicesController::class);
 */
 //
 Route::resource('companies',CompanyController::class);
+
+/*
+|------------------------------------------------------------------------
+|   Orders
+|------------------------------------------------------------------------
+*/
+//
+Route::resource('orders',OrderController::class);
 
 //

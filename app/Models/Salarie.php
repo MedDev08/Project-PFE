@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Order;
 use App\Models\Services;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -12,8 +13,14 @@ class Salarie extends Model
     use HasFactory;
 
     public function service():BelongsTo{
-        return $this->belongsTo(Services::class);
+        return $this->belongsTo(Services::class,'services_id');
     }
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class,'orders_id');
+    }
+
 
     //protected $fillable =['cin','nom','prenom','tel','salaire'];
 }

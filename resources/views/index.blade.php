@@ -47,13 +47,13 @@
               </div>
             </div><div class="col-6 col-sm-4 col-lg-2">
               <div class="card">
-                <a href="servi/" class="btn btn-primary btn-lg">
+                <a href="orders/" class="btn btn-primary btn-lg">
                   <div class="card-body p-3 text-center">
                     <div class="h1 m-0">
                       <i class="fa fa-user"></i>
                     </div>
                   </div>
-                  <div class="breadcrumb-item mb-3">New Tickets</div>
+                  <div class="breadcrumb-item mb-3">Orders</div>
                 </a>
               </div>
             </div>

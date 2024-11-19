@@ -126,4 +126,10 @@ class SalarieController extends Controller
         $salarie->delete();
         return redirect('/salaries')->with('message','Employee delete successfully!');
     }
+
+    public function getSalariesByService($service_id) 
+    { 
+        $salaries = Salarie::where('services_id', $service_id)->with('service')->get(); 
+        return response()->json($salaries); 
+    }
 }
