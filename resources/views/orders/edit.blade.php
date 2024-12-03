@@ -9,16 +9,20 @@
         <div class="card mb-4">
             <div class="card-header">
                 <div class="d-flex align-items-center">
-                    <h4 class="card-title">Form</h4>
+                    <h4 class="card-title">Edit Order</h4>
                 </div>
             </div>
             <div class="card-body">
             <form action="{{route('orders.update',$order)}}" method="post" enctype="multipart/form-data" class="form-horizontal">
                 @csrf
                 <div class="row form-group">
-                    <div class="col col-md-3"><label class="form-control-label">ID</label></div>
-                    <div class="col-12 col-md-9">
-                        <p class="form-control-static">Username</p>
+                    <div class="col col-md-3"><label for="num" class=" form-control-label">Order Number</label></div>
+                    <div class="col-12 col-md-6">
+                        <input type="text" value="{{$order->num}}" id="text-input" name="num" placeholder="Order Number" class="form-control">
+
+                        @error('num')
+                        <small class="form-text text-muted">{{$message}}</small>
+                        @enderror
                     </div>
                 </div>
                 <div class="row form-group">
@@ -52,6 +56,25 @@
                     </div>
                 </div>
                 <div class="row form-group">
+                    <div class="col col-md-3"><label for="start_date" class=" form-control-label">Period</label></div>
+                    <div class="col-12 col-md-3">
+                        <label for="start_date" class=" form-control-label">Start Date</label>
+                        <input type="date" value="{{\Carbon\Carbon::parse($order->start_date)->format('Y-m-d')}}" id="start_date" name="start_date" class="form-control">
+
+                        @error('start_date')
+                        <small class="form-text text-muted">{{$message}}</small>
+                        @enderror
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <label for="start_date" class=" form-control-label">Finish Date</label>
+                        <input type="date" value="{{\Carbon\Carbon::parse($order->finish_date)->format('Y-m-d')}}" id="finish_date" name="finish_date" class="form-control">
+
+                        @error('finish_date')
+                        <small class="form-text text-muted">{{$message}}</small>
+                        @enderror
+                    </div>
+                </div>
+                <div class="row form-group">
                     @error('checkboxes')
                     <small class="form-text text-muted">{{$message}}</small>
                     @enderror
@@ -63,6 +86,7 @@
                                     <th>First Name</th>
                                     <th>Last Name</th>
                                     <th>Service</th>
+                                    <th>Salary</th>
                                     <th>Status</th>
                                     <th style="width: 10%">Action</th>
                                 </tr>
@@ -72,12 +96,33 @@
         
                                 @foreach ($salaries as $salarie)
                                 <tr>
-                                    <td><img width="100px" src="{{asset('storage/'.$salarie->img)}}" alt=""></td>
+                                    <td><img width="100px" height="80px" src="{{asset('storage/'.$salarie->img)}}" alt=""></td>
                                     <td>{{$salarie->nom}}</td>
                                     <td>{{$salarie->prenom}}</td>
                                     <td>
                                         {{$salarie->service ? $salarie->service->name : 'No Service'}}
                                     </td>
+                                    <td>{{$salarie->salaire}}</td>
+                                    <td>{{$salarie->dispo==0?"Disponible":"Not Disponible"}}</td>
+                                    <td>
+                                        <div class="checkbox">
+                                            <label for="checkbox{{$salarie->id}}" class="form-check-label ">
+                                                <input type="checkbox" @checked($order->id==$salarie->orders_id) id="checkbox{{$salarie->id}}" name="checkboxes[]" value="{{$salarie->id}}" class="form-check-input">
+                                            </label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                @endforeach
+        
+                                @foreach ($salariesDispo as $salarie)
+                                <tr>
+                                    <td><img width="100px" height="80px" src="{{asset('storage/'.$salarie->img)}}" alt=""></td>
+                                    <td>{{$salarie->nom}}</td>
+                                    <td>{{$salarie->prenom}}</td>
+                                    <td>
+                                        {{$salarie->service ? $salarie->service->name : 'No Service'}}
+                                    </td>
+                                    <td>{{$salarie->salaire}}</td>
                                     <td>{{$salarie->dispo==0?"Disponible":"Not Disponible"}}</td>
                                     <td>
                                         <div class="checkbox">
@@ -101,12 +146,12 @@
                              $('#serviceSelect').change(function() {
                                 var serviceId = $(this).val(); 
                                 if (serviceId) { 
-                                    $.ajax({ url: '/salaries/' + serviceId, type: 'GET', success: function(data) { 
+                                    $.ajax({ url: '/salaries/' + serviceId+'/byService', type: 'GET', success: function(data) { 
                                         var tbody = $('#salariesTable tbody'); 
                                         tbody.empty(); 
                                         $.each(data, function(index, salarie) {
                                             if(salarie.dispo==0){
-                                                var row = '<tr>' + '<td><img width="100px" src="/storage/' + salarie.img + '" alt=""></td>' + '<td>' + salarie.nom + '</td>' + '<td>' + salarie.prenom + '</td>' + '<td>' + (salarie.service ? salarie.service.name : 'No Service') + '</td>' + '<td>' + (salarie.dispo == 0 ? "Disponible" : "Not Disponible") + '</td>' + '<td><div class="checkbox"><label for="checkbox' + salarie.id + '" class="form-check-label"><input type="checkbox" id="checkbox' + salarie.id + '" name="checkboxes[]" value="' + salarie.id + '" class="form-check-input"></label></div></td>' + '</tr>'; tbody.append(row); 
+                                                var row = '<tr>' + '<td><img width="100px" src="/storage/' + salarie.img + '" alt=""></td>' + '<td>' + salarie.nom + '</td>' + '<td>' + salarie.prenom + '</td>' + '<td>' + (salarie.service ? salarie.service.name : 'No Service') + '</td>' + '<td>' + salarie.salaire + '</td>' + '<td>' + (salarie.dispo == 0 ? "Disponible" : "Not Disponible") + '</td>' + '<td><div class="checkbox"><label for="checkbox' + salarie.id + '" class="form-check-label"><input type="checkbox" id="checkbox' + salarie.id + '" name="checkboxes[]" value="' + salarie.id + '" class="form-check-input"></label></div></td>' + '</tr>'; tbody.append(row); 
                                             }
                                         }); 
                                     } 

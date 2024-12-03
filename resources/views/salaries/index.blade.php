@@ -10,10 +10,10 @@
         <div class="card mb-4">
             <div class="card-header">
                 <div class="d-flex align-items-center">
-                    <h4 class="card-title">Add Row</h4>
+                    <h4 class="card-title">Add Employee</h4>
                     <a href="salaries/create" class="btn btn-primary btn-round ms-auto" >
                         <i class="fa fa-plus"></i>
-                        Add Row
+                        Add
                     </a>
                 </div>
             </div>
@@ -23,11 +23,12 @@
                         <tr>
                             <th>Image</th>
                             <th>CIN</th>
-                            <th>Firstname</th>
-                            <th>Lastname</th>
-                            <th>Phone</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Sexe</th>
                             <th>Service</th>
                             <th>Salary</th>
+                            <th>Phone</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -35,11 +36,12 @@
                         <tr>
                             <th>Image</th>
                             <th>CIN</th>
-                            <th>Firstname</th>
-                            <th>Lastname</th>
-                            <th>Phone</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Sexe</th>
                             <th>Service</th>
                             <th>Salary</th>
+                            <th>Phone</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>
@@ -50,7 +52,7 @@
                             <td>{{$salarie->cin}}</td>
                             <td>{{$salarie->nom}}</td>
                             <td>{{$salarie->prenom}}</td>
-                            <td>{{$salarie->tel}}</td>
+                            <td>{{$salarie->sexe}}</td>
                             <td>
                                 @foreach ($services as $service)
                                 @if ($salarie->services_id===$service->id)
@@ -60,6 +62,7 @@
                                 @endforeach
                             </td>
                             <td>{{$salarie->salaire}}</td>
+                            <td>{{$salarie->tel}}</td>
                             <td>
                                 <div class="form-button-action">
                                     <a href="" data-bs-toggle="tooltip" title="" class="btn btn-link btn-secondary btn-lg" data-original-title="Edit Task">

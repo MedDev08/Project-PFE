@@ -14,10 +14,10 @@
           <div class="row justify-content-center align-items-center mb-5">
             <div class="col-6 col-sm-4 col-lg-2">
               <div class="card">
-                <a href="salaries/" class="btn btn-primary btn-lg">
+                <a href="/salaries" class="btn btn-primary btn-lg">
                   <div class="card-body p-3 text-center">
                     <div class="h1 m-0">
-                      <i class="fa fa-user"></i>
+                      <i class="fa fa-users"></i>
                     </div>
                   </div>
                   <div class="breadcrumb-item mb-3">Employees</div>
@@ -25,10 +25,10 @@
               </div>
             </div><div class="col-6 col-sm-4 col-lg-2">
               <div class="card">
-                <a href="companies/" class="btn btn-primary btn-lg">
+                <a href="/companies" class="btn btn-primary btn-lg">
                   <div class="card-body p-3 text-center">
                     <div class="h1 m-0">
-                      <i class="fa fa-user"></i>
+                      <i class="fa fa-building"></i>
                     </div>
                   </div>
                   <div class="breadcrumb-item mb-3">Companies</div>
@@ -36,10 +36,10 @@
               </div>
             </div><div class="col-6 col-sm-4 col-lg-2">
               <div class="card">
-                <a href="services/" class="btn btn-primary btn-lg">
+                <a href="/services" class="btn btn-primary btn-lg">
                   <div class="card-body p-3 text-center">
                     <div class="h1 m-0">
-                      <i class="fa fa-user"></i>
+                      <i class="fa fa-gears"></i>
                     </div>
                   </div>
                   <div class="breadcrumb-item mb-3">Services</div>
@@ -47,10 +47,10 @@
               </div>
             </div><div class="col-6 col-sm-4 col-lg-2">
               <div class="card">
-                <a href="orders/" class="btn btn-primary btn-lg">
+                <a href="/orders" class="btn btn-primary btn-lg">
                   <div class="card-body p-3 text-center">
                     <div class="h1 m-0">
-                      <i class="fa fa-user"></i>
+                      <i class="fa fa-list-alt"></i>
                     </div>
                   </div>
                   <div class="breadcrumb-item mb-3">Orders</div>

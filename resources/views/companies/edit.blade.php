@@ -9,7 +9,7 @@
         <div class="card mb-4">
             <div class="card-header">
                 <div class="d-flex align-items-center">
-                    <h4 class="card-title">Form</h4>
+                    <h4 class="card-title">Edit Company</h4>
                 </div>
             </div>
             <div class="card-body">
@@ -17,9 +17,14 @@
                 @csrf
                 @method('PUT')
                 <div class="row form-group">
-                    <div class="col col-md-3"><label class="form-control-label">ID</label></div>
-                    <div class="col-12 col-md-9">
-                        <p class="form-control-static">Username</p>
+                    <div class="col col-md-3"><label for="num" class=" form-control-label">Company Number</label></div>
+                    <div class="col-12 col-md-6">
+                        <input type="text" value="{{$company->num}}" id="text-input" name="num" placeholder="Company Number" class="form-control">
+
+                        @error('num')
+                        <small class="form-text text-muted">{{$message}}</small>
+                        @enderror
+                        
                     </div>
                 </div>
                 <div class="row form-group">
@@ -39,6 +44,17 @@
                         <input type="text" value="{{$company->phone}}" id="text-input" name="phone" placeholder="Phne Number" class="form-control">
 
                         @error('phone')
+                        <small class="form-text text-muted">{{$message}}</small>
+                        @enderror
+                        
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label for="email" class=" form-control-label">Email</label></div>
+                    <div class="col-12 col-md-6">
+                        <input type="email" value="{{$company->email}}" id="text-input" name="email" placeholder="example@example.com" class="form-control">
+
+                        @error('email')
                         <small class="form-text text-muted">{{$message}}</small>
                         @enderror
                         

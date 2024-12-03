@@ -10,10 +10,10 @@
         <div class="card mb-4">
             <div class="card-header">
                 <div class="d-flex align-items-center">
-                    <h4 class="card-title">Add Row</h4>
+                    <h4 class="card-title">Add Company</h4>
                     <a href="companies/create" class="btn btn-primary btn-round ms-auto" >
                         <i class="fa fa-plus"></i>
-                        Add Row
+                        Add
                     </a>
                 </div>
             </div>
@@ -22,9 +22,11 @@
                     <thead>
                         <tr>
                             <th>Logo</th>
+                            <th>Number</th>
                             <th>Name</th>
-                            <th>phone</th>
                             <th>Location</th>
+                            <th>phone</th>
+                            <th>Email</th>
                             <th>Description</th>
                             <th style="width: 10%">Action</th>
                         </tr>
@@ -32,9 +34,11 @@
                     <tfoot>
                         <tr>
                             <th>Logo</th>
+                            <th>Number</th>
                             <th>Name</th>
-                            <th>Phone</th>
                             <th>Location</th>
+                            <th>phone</th>
+                            <th>Email</th>
                             <th>Description</th>
                             <th>Action</th>
                         </tr>
@@ -45,9 +49,11 @@
                         @foreach ($companies as $company)
                         <tr>
                             <td><img width="100px" src="{{asset('storage/'.$company->img)}}" alt=""></td>
+                            <td>{{$company->num}}</td>
                             <td>{{$company->name}}</td>
-                            <td>{{$company->phone}}</td>
                             <td>{{$company->location}}</td>
+                            <td>{{$company->phone}}</td>
+                            <td>{{$company->email}}</td>
                             <td>{{$company->description}}</td>
                             <td>
                                 <div class="form-button-action">

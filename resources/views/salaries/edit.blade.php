@@ -8,19 +8,13 @@
         <div class="card mb-4">
             <div class="card-header">
                 <div class="d-flex align-items-center">
-                    <h4 class="card-title">Form</h4>
+                    <h4 class="card-title">Edit Employee</h4>
                 </div>
             </div>
             <div class="card-body">
             <form action="/salaries/{{$salarie->id}}" method="post" enctype="multipart/form-data" class="form-horizontal">
                 @csrf
                 @method('PUT')
-                <div class="row form-group">
-                    <div class="col col-md-3"><label class="form-control-label">ID</label></div>
-                    <div class="col-12 col-md-9">
-                        <p class="form-control-static">{{$salarie->id}}</p>
-                    </div>
-                </div>
                 <div class="row form-group">
                     <div class="col col-md-3"><label for="cin" class=" form-control-label">CIN</label></div>
                     <div class="col-12 col-md-6">
@@ -53,6 +47,19 @@
                     </div>
                 </div>
                 <div class="row form-group">
+                    <div class="col col-md-3"><label for="sexe" class=" form-control-label">Sexe</label></div>
+                    <div class="col-12 col-md-6">
+                        <select id="sexe" name="sexe" class="form-select">
+                            <option value="">choose one</option>
+                            <option @selected($salarie->sexe=='Man') value="Man">Man</option>
+                            <option @selected($salarie->sexe=='Woman') value="Woman">Woman</option>
+                        </select>
+                        @error('sexe')
+                        <small class="form-text text-muted">{{$message}}</small>
+                        @enderror
+                    </div>
+                </div>
+                <div class="row form-group">
                     <div class="col col-md-3"><label for="tel" class=" form-control-label">Phone</label></div>
                     <div class="col-12 col-md-6">
                         <input type="text" value="{{$salarie->tel}}" id="text-input" name="tel" placeholder="Phone" class="form-control">
@@ -68,7 +75,7 @@
                         <select id="services_id" name="services_id" class="form-select">
                             <option value="">choose one</option>
                             @foreach ($services as $service)
-                            <option @selected($salarie->services_id===$service->id) value="{{$service->id}}">{{$service->name}}</option>
+                            <option @selected($salarie->services_id==$service->id) value="{{$service->id}}">{{$service->name}}</option>
                                 
                             @endforeach
                         </select>

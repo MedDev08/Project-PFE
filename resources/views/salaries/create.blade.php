@@ -8,18 +8,12 @@
         <div class="card mb-4">
             <div class="card-header">
                 <div class="d-flex align-items-center">
-                    <h4 class="card-title">Form</h4>
+                    <h4 class="card-title">Add Employee</h4>
                 </div>
             </div>
             <div class="card-body">
             <form action="/salaries" method="post" enctype="multipart/form-data" class="form-horizontal">
                 @csrf
-                <div class="row form-group">
-                    <div class="col col-md-3"><label class="form-control-label">ID</label></div>
-                    <div class="col-12 col-md-9">
-                        <p class="form-control-static">Username</p>
-                    </div>
-                </div>
                 <div class="row form-group">
                     <div class="col col-md-3"><label for="cin" class=" form-control-label">CIN</label></div>
                     <div class="col-12 col-md-6">
@@ -47,6 +41,19 @@
                         <input type="text" value="{{old('prenom')}}" id="text-input" name="prenom" placeholder="First Name" class="form-control">
 
                         @error('prenom')
+                        <small class="form-text text-muted">{{$message}}</small>
+                        @enderror
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-3"><label for="sexe" class=" form-control-label">Sexe</label></div>
+                    <div class="col-12 col-md-6">
+                        <select id="sexe" name="sexe" class="form-select">
+                            <option value="">choose one</option>
+                            <option @selected(old('sexe')==='Man') value="Man">Man</option>
+                            <option @selected(old('sexe')==='Woman') value="Woman">Woman</option>
+                        </select>
+                        @error('sexe')
                         <small class="form-text text-muted">{{$message}}</small>
                         @enderror
                     </div>

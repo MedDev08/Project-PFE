@@ -6,6 +6,7 @@ use App\Models\Salarie;
 use App\Models\Services;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 
 class SalarieController extends Controller
 {
@@ -50,6 +51,7 @@ class SalarieController extends Controller
             'cin'=>['required',Rule::unique('salaries','cin')],
             'nom'=>'required',
             'prenom'=>'required',
+            'sexe'=>'required',
             'tel'=>'required',
             'services_id'=>['required','numeric'],
             'salaire'=>['required','numeric']
@@ -103,6 +105,7 @@ class SalarieController extends Controller
             'cin'=>['required'],
             'nom'=>'required',
             'prenom'=>'required',
+            'sexe'=>'required',
             'tel'=>'required',
             'salaire'=>['required','numeric'],
             'services_id'=>['required','numeric']
@@ -127,9 +130,19 @@ class SalarieController extends Controller
         return redirect('/salaries')->with('message','Employee delete successfully!');
     }
 
-    public function getSalariesByService($service_id) 
+    public function getSalariesByService($service_id,$start_dt) 
     { 
-        $salaries = Salarie::where('services_id', $service_id)->with('service')->get(); 
+        $salaries = DB::table('salaries as s') 
+        ->join('services as sv','s.services_id','=','sv.id')
+        ->leftJoin('order_employees as os', 's.id', '=', 'os.salarie_id') 
+        ->where('s.services_id', $service_id) 
+        ->where(function($query) use ($start_dt) { 
+            $query->whereNotIn('s.id', function($subquery) { 
+                $subquery->select('salarie_id') 
+                ->from('order_employees'); }) 
+                ->orWhere('os.finish_date', '<', $start_dt); }) 
+                ->select('s.*','sv.name')->distinct() ->get();
+        //$salaries = Salarie::where('services_id', $service_id)->with('service')->get(); 
         return response()->json($salaries); 
     }
 }

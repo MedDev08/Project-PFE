@@ -10,10 +10,10 @@
         <div class="card mb-4">
             <div class="card-header">
                 <div class="d-flex align-items-center">
-                    <h4 class="card-title">Add Row</h4>
+                    <h4 class="card-title">Add Order</h4>
                     <a href="orders/create" class="btn btn-primary btn-round ms-auto" >
                         <i class="fa fa-plus"></i>
-                        Add Row
+                        Add
                     </a>
                 </div>
             </div>
@@ -21,19 +21,25 @@
                 <table id="datatablesSimple">
                     <thead>
                         <tr>
+                            <th>Number</th>
                             <th>Logo</th>
                             <th>Name</th>
                             <th>Service</th>
                             <th>Quantity</th>
+                            <th>Unit Price</th>
+                            <th>Total</th>
                             <th style="width: 10%">Action</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
+                            <th>Number</th>
                             <th>Logo</th>
                             <th>Name</th>
                             <th>Service</th>
                             <th>Quantity</th>
+                            <th>Unit Price</th>
+                            <th>Total</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>
@@ -42,14 +48,21 @@
 
                         @foreach ($orders as $order)
                         <tr>
-                            <td></td>
-                            <!--<td><img width="100px" src="{asset('storage/'.$order->company->img)}}" alt=""></td>-->
+                            <td>{{$order->num}}</td>
+                            <td><img width="100px" src="{{asset('storage/'.$order->company->img)}}" alt=""></td>
                             <td>{{$order->company->name}}</td>
                             <td>{{$order->service->name}}</td>
+                            <td>{{$order->qte}}</td>
+                            <td>{{$order->num}}</td>
                             <td>
                                 @php
-                                    echo count($salaries);
-                                @endphp
+                                $total=0;
+                                foreach ($salaries as $salarie) {
+                                    if($salarie->orders_id==$order->id)
+                                    $total+=$salarie->salaire;
+                                }
+                                echo $total;
+                                @endphp DH
                             </td>
                             <td>
                                 <div class="form-button-action">

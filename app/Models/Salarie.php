@@ -16,10 +16,14 @@ class Salarie extends Model
         return $this->belongsTo(Services::class,'services_id');
     }
 
-    public function order()
+    public function orders(){
+        return $this->belongsToMany(Order::class,'order_employees');
+    }
+
+    /*public function order()
     {
         return $this->belongsTo(Order::class,'orders_id');
-    }
+    }*/
 
 
     //protected $fillable =['cin','nom','prenom','tel','salaire'];

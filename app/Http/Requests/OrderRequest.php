@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class OrderRequest extends FormRequest
@@ -24,8 +25,11 @@ class OrderRequest extends FormRequest
     public function rules()
     {
         return [
+            'num'=>['required',Rule::unique('orders','num')],
             'companies_id'=>'required',
             'services_id'=>'required',
+            'start_date'=>'required',
+            'finish_date'=>'required',
             'checkboxes' => 'required|array',
             'checkboxes.*' => 'exists:salaries,id',
         ];

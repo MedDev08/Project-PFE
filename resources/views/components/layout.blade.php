@@ -50,16 +50,20 @@
                                 Dashboard
                             </a>
                             <a class="nav-link" href="/salaries">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                                 Employees
                             </a>
                             <a class="nav-link" href="/services">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-gears"></i></div>
                                 Services
                             </a>
                             <a class="nav-link" href="/companies">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-building"></i></div>
                                 Companies
+                            </a>
+                            <a class="nav-link" href="/orders">
+                                <div class="sb-nav-link-icon"><i class="fas fa-list-alt"></i></div>
+                                Orders
                             </a>
                         </div>
                     </div>

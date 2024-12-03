@@ -9,7 +9,7 @@
         <div class="card mb-4">
             <div class="card-header">
                 <div class="d-flex align-items-center">
-                    <h4 class="card-title">Form</h4>
+                    <h4 class="card-title">Add Service</h4>
                 </div>
             </div>
             <div class="card-body">

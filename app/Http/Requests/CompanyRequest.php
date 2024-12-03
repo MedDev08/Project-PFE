@@ -26,6 +26,8 @@ class CompanyRequest extends FormRequest
     {
         $rules= [
             'phone'=>'required',
+            'num'=>['required',Rule::unique('companies','num')],
+            'email'=>'required',
             'location'=>'required',
             'description'=>'required|min:50'
         ];

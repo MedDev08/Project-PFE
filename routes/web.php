@@ -17,7 +17,7 @@ use App\Http\Controllers\ServicesController;
 |
 */
 // Ajax
-Route::get('/salaries/{service_id}', [SalarieController::class, 'getSalariesByService'])->name('salaries.byService');
+Route::get('/salaries/{service_id}/{start_dt}/byService', [SalarieController::class, 'getSalariesByService'])->name('salaries.byService');
 
 Route::get('/', function () { return view('index'); });
 /*
