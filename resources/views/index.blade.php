@@ -7,7 +7,7 @@
     <div class="card mb-4">
         <div class="card-header">
             <div class="d-flex align-items-center justify-content-center">
-                <h4 class="card-title">Add Row</h4>
+                <h4 class="card-title">SFG Sarl</h4>
             </div>
         </div>
         <div class="card-body">

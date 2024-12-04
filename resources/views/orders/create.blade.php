@@ -75,6 +75,16 @@
                     </div>
                 </div>
                 <div class="row form-group">
+                    <div class="col col-md-3"><label for="unit_price" class=" form-control-label">Unit Price</label></div>
+                    <div class="col-12 col-md-6">
+                        <input type="text" value="{{old('unit_price')}}" id="text-input" name="unit_price" placeholder="Unit Price" class="form-control">
+
+                        @error('unit_price')
+                        <small class="form-text text-muted">{{$message}}</small>
+                        @enderror
+                    </div>
+                </div>
+                <div class="row form-group">
                     @error('checkboxes')
                     <small class="form-text text-muted">{{$message}}</small>
                     @enderror

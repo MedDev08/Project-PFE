@@ -17,12 +17,6 @@
                 @csrf
                 @method('PUT')
                 <div class="row form-group">
-                    <div class="col col-md-3"><label class="form-control-label">ID</label></div>
-                    <div class="col-12 col-md-9">
-                        <p class="form-control-static">{{$service->id}}</p>
-                    </div>
-                </div>
-                <div class="row form-group">
                     <div class="col col-md-3"><label for="name" class=" form-control-label">Service Name</label></div>
                     <div class="col-12 col-md-6">
                         <input type="text" value="{{$service->name}}" id="text-input" name="name" placeholder="Service" class="form-control">

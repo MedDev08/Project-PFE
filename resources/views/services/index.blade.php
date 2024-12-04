@@ -10,7 +10,7 @@
         <div class="card mb-4">
             <div class="card-header">
                 <div class="d-flex align-items-center">
-                    <h4 class="card-title">Add Service</h4>
+                    <h4 class="card-title">Services List</h4>
                     <a href="services/create" class="btn btn-primary btn-round ms-auto" >
                         <i class="fa fa-plus"></i>
                         Add
@@ -18,7 +18,37 @@
                 </div>
             </div>
             <div class="card-body">
-                <table id="datatablesSimple">
+                <div class="row">
+                    @foreach ($services as $service)
+                    <div class="col-lg-6">
+                        <div class="card card-post card-round" style="align-items: center">
+                        <img width="200px" src="{{asset('storage/'.$service->img)}}" alt="Card image cap" />
+                        <div class="card-body">
+                            <div class="d-flex">
+                            <div class="info-post ms-2">
+                                <p class="username"></p>
+                            </div>
+                            </div>
+                            <div class="separator-solid"></div>
+                            <h3 class="card-title">{{$service->name}}</h3>
+                            <p class="card-text">
+                            {{$service->description}}
+                            </p>
+                            <a href="{{route('services.edit',$service)}}" class="btn btn-primary btn-rounded btn-sm" style="float: inline-start;margin:5px"><i class="fa fa-user"></i> Edit</a>
+                            <form method="POST" action="{{route('services.destroy',$service)}}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" data-bs-toggle="tooltip" title="" class="btn btn-danger btn-rounded btn-sm" data-original-title="Remove" style="float: inline-start;margin:5px">
+                                    <i class="fa fa-trash"></i> Delete
+                                </button>
+                            </form>
+                        </div>
+                        </div>
+                    </div>
+                        
+                    @endforeach
+                </div>
+                <!--<table id="datatablesSimple">
                     <thead>
                         <tr>
                             <th>Image</th>
@@ -65,7 +95,7 @@
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-                                </form>-->
+                                </form>
                             </td>
                         </tr>
                         @endforeach
@@ -76,7 +106,7 @@
                         </tr>
                         @endunless
                     </tbody>
-                </table>
+                </table>-->-->
             </div>
         </div>
     </div>

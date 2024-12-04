@@ -61,6 +61,7 @@ class OrderController extends Controller
         //dd($orderRequest);
         $formFields=$orderRequest->validated();
         $num=$formFields['num'];
+        $unit_price=$formFields['unit_price'];
         $companies_id=$formFields['companies_id'];
         $services_id=$formFields['services_id'];
         $start_date=$formFields['start_date'];
@@ -72,6 +73,7 @@ class OrderController extends Controller
         // Create the order
         $order=Order::create([
             'num'=>$num,
+            'unit_price'=>$unit_price,
             'companies_id'=>$companies_id,
             'services_id'=>$services_id,
             'qte'=>count($selectedSalaries),

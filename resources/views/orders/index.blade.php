@@ -10,7 +10,7 @@
         <div class="card mb-4">
             <div class="card-header">
                 <div class="d-flex align-items-center">
-                    <h4 class="card-title">Add Order</h4>
+                    <h4 class="card-title">Orders List</h4>
                     <a href="orders/create" class="btn btn-primary btn-round ms-auto" >
                         <i class="fa fa-plus"></i>
                         Add
@@ -48,30 +48,32 @@
 
                         @foreach ($orders as $order)
                         <tr>
-                            <td>{{$order->num}}</td>
+                            <td>N°= {{$order->num}}</td>
                             <td><img width="100px" src="{{asset('storage/'.$order->company->img)}}" alt=""></td>
                             <td>{{$order->company->name}}</td>
                             <td>{{$order->service->name}}</td>
                             <td>{{$order->qte}}</td>
-                            <td>{{$order->num}}</td>
                             <td>
                                 @php
-                                $total=0;
-                                foreach ($salaries as $salarie) {
-                                    if($salarie->orders_id==$order->id)
-                                    $total+=$salarie->salaire;
-                                }
-                                echo $total;
-                                @endphp DH
+                                    $formattedPrice = number_format($order->unit_price, 2, ',', ' ') . ' DH';
+                                    echo $formattedPrice;
+                                @endphp
+                            </td>
+                            <td><b>
+                                @php
+                                $total = $order->unit_price*$order->qte;
+                                $formattedPrice = number_format($total, 2, ',', ' ') . ' DH';
+                                echo $formattedPrice;
+                                @endphp</b>
                             </td>
                             <td>
                                 <div class="form-button-action">
-                                    <a href="" data-bs-toggle="tooltip" title="" class="btn btn-link btn-secondary btn-lg" data-original-title="Edit Task">
+                                    <!--<a href="" data-bs-toggle="tooltip" title="" class="btn btn-link btn-secondary btn-lg" data-original-title="Edit Task">
                                         <i class="fa fa-user"></i>
                                     </a>
                                     <a href="{{route('orders.edit',$order)}}" data-bs-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">
                                         <i class="fa fa-edit"></i>
-                                    </a>
+                                    </a>-->
                                     <form method="POST" action="{{route('orders.destroy',$order)}}">
                                         @csrf
                                         @method('DELETE')

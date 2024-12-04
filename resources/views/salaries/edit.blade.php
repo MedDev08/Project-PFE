@@ -2,7 +2,8 @@
     <div class="container-fluid px-4">
         <h1 class="mt-4">Create</h1>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+            <li class="breadcrumb-item">Dashboard</li>
+            <li class="breadcrumb-item"><a href="/salaries">Employees</a></li>
             <li class="breadcrumb-item active">Edit</li>
         </ol>
         <div class="card mb-4">

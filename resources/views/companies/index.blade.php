@@ -10,7 +10,7 @@
         <div class="card mb-4">
             <div class="card-header">
                 <div class="d-flex align-items-center">
-                    <h4 class="card-title">Add Company</h4>
+                    <h4 class="card-title">Companies List</h4>
                     <a href="companies/create" class="btn btn-primary btn-round ms-auto" >
                         <i class="fa fa-plus"></i>
                         Add
@@ -27,7 +27,6 @@
                             <th>Location</th>
                             <th>phone</th>
                             <th>Email</th>
-                            <th>Description</th>
                             <th style="width: 10%">Action</th>
                         </tr>
                     </thead>
@@ -39,7 +38,6 @@
                             <th>Location</th>
                             <th>phone</th>
                             <th>Email</th>
-                            <th>Description</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>
@@ -54,7 +52,6 @@
                             <td>{{$company->location}}</td>
                             <td>{{$company->phone}}</td>
                             <td>{{$company->email}}</td>
-                            <td>{{$company->description}}</td>
                             <td>
                                 <div class="form-button-action">
                                     <a href="{{route('companies.show',$company)}}" data-bs-toggle="tooltip" title="" class="btn btn-link btn-secondary btn-lg" data-original-title="Edit Task">

@@ -72,8 +72,21 @@ class SalarieController extends Controller
      */
     public function show(Salarie $salarie)
     {
-        //
-        return view('salaries.show');
+        $salarieInOrder=$salaries = DB::table('salaries as s') 
+        ->join('order_employees as op', 's.id', '=', 'op.salarie_id') 
+        ->join('orders as o', 'op.order_id', '=', 'o.id') 
+        ->join('companies as c', 'o.companies_id', '=', 'c.id') 
+        ->whereIn('s.id', function($query) { 
+            $query->select('salarie_id') ->from('order_employees'); 
+        }) ->where('s.id', $salarie->id) 
+        ->select('s.*', 'c.name as company_name', 'o.start_date', 'o.finish_date') 
+        ->distinct() ->get();
+
+        //dd($salarieInOrder);
+        return view('salaries.show',[
+            'salarieServ'=>$salarie,
+            'salarieInOrder'=>$salarieInOrder
+        ]);
     }
 
     /**

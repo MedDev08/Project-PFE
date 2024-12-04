@@ -10,7 +10,7 @@
         <div class="card mb-4">
             <div class="card-header">
                 <div class="d-flex align-items-center">
-                    <h4 class="card-title">Add Employee</h4>
+                    <h4 class="card-title">Employees List</h4>
                     <a href="salaries/create" class="btn btn-primary btn-round ms-auto" >
                         <i class="fa fa-plus"></i>
                         Add
@@ -65,7 +65,7 @@
                             <td>{{$salarie->tel}}</td>
                             <td>
                                 <div class="form-button-action">
-                                    <a href="" data-bs-toggle="tooltip" title="" class="btn btn-link btn-secondary btn-lg" data-original-title="Edit Task">
+                                    <a href="salaries/{{$salarie->id}}/show" data-bs-toggle="tooltip" title="" class="btn btn-link btn-secondary btn-lg" data-original-title="Edit Task">
                                         <i class="fa fa-user"></i>
                                     </a>
                                     <a href="salaries/{{$salarie->id}}/edit" data-bs-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task">

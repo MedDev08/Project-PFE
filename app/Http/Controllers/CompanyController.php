@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\Company;
+use App\Models\Salarie;
+use App\Models\Assignement;
 use Illuminate\Http\Request;
 use App\Http\Requests\CompanyRequest;
 
@@ -54,7 +57,16 @@ class CompanyController extends Controller
      */
     public function show(Company $company)
     {
-        //
+        $orders=Order::where('companies_id',$company->id)->with('service')->get();
+        $orderEmployees=Assignement::all();
+        $salaries=Salarie::all();
+        //dd($orderEmployees);
+        return view('companies.show',[
+            'company'=>$company,
+            'orders'=>$orders,
+            'orderEmployees'=>$orderEmployees,
+            'salaries'=>$salaries
+        ]);
     }
 
     /**

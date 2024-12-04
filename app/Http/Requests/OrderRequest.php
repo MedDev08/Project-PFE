@@ -26,10 +26,11 @@ class OrderRequest extends FormRequest
     {
         return [
             'num'=>['required',Rule::unique('orders','num')],
+            'unit_price'=>['required','numeric'],
             'companies_id'=>'required',
             'services_id'=>'required',
-            'start_date'=>'required',
-            'finish_date'=>'required',
+            'start_date' => 'required|date|before_or_equal:finish_date', 
+            'finish_date' => 'required|date|after_or_equal:start_date',
             'checkboxes' => 'required|array',
             'checkboxes.*' => 'exists:salaries,id',
         ];

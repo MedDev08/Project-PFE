@@ -65,7 +65,7 @@ class ServicesController extends Controller
      */
     public function edit(Services $service)
     {
-        dd($service->salaries()->get());
+        //dd($service->salaries()->get());
         return view('services/edit',[
             'service'=>$service
         ]);

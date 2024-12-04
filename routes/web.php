@@ -43,7 +43,7 @@ Route::put('/salaries/{salarie}',[SalarieController::class,'update']);
 Route::delete('/salaries/{salarie}',[SalarieController::class,'destroy']);
 
 // show salarie
-Route::get('/salaries/show',[SalarieController::class,'show']);
+Route::get('/salaries/{salarie}/show',[SalarieController::class,'show']);
 
 /*
 |------------------------------------------------------------------------
